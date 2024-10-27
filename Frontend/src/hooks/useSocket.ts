@@ -14,7 +14,9 @@ export const useSocket = () => {
 
   const notifyThresholdCross = (data: ThresholdAlertData) => {
     const { crypto, price, direction, threshold } = data;
-    const message = `${crypto} is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
+    const message = `${
+      crypto.charAt(0).toUpperCase() + crypto.slice(1)
+    } is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
     toast.warning(message, {
       position: "top-right",
       autoClose: 5000,
@@ -46,8 +48,8 @@ export const useSocket = () => {
     };
   }, []);
 
-  const handleCoinSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCoin(e.target.value);
+  const handleCoinSelect = (value: string) => {
+    setSelectedCoin(value);
   };
 
   const handleThresholdChange = (e: React.ChangeEvent<HTMLInputElement>) => {

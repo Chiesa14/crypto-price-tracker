@@ -13,7 +13,7 @@ const NotificationList: React.FC<NotificationListProps> = ({
         Notifications
       </h2>
       <div className="overflow-y-auto" style={{ maxHeight: "300px" }}>
-        <ul className="space-y-3">
+        <ul className="space-y-4">
           {notifications.map((notif, index) => (
             <li key={index} className="text-gray-800">
               {notif.message}
