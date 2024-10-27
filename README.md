@@ -28,6 +28,12 @@ The Crypto Price Tracker is a project designed to monitor the real-time prices o
     npm install
 ```
 
+Runn the following command to start the frontend:
+
+```bash
+    npm run dev
+```
+
 2. **Setup the backend:**
 
 ```bash
@@ -36,12 +42,6 @@ The Crypto Price Tracker is a project designed to monitor the real-time prices o
 
 ```bash
     npm install
-```
-
-Runn the following command to start the frontend:
-
-```bash
-    npm run dev
 ```
 
 - **Environment Variables**
@@ -55,7 +55,7 @@ CRYPTO_IDS=bitcoin,ethereum,litecoin
 CURRENCY=usd
 ```
 
-Runn the following command to start the backend:
+Run the following command to start the backend:
 
 ```bash
     nodemon server.js
