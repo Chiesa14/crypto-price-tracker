@@ -13,7 +13,7 @@ The Crypto Price Tracker is a project designed to monitor the real-time prices o
 1. **Clone the repository:**
 
 ```bash
-   git clone https://github.com/Chiesa14/crypto-price-tracker.git
+git clone https://github.com/Chiesa14/crypto-price-tracker.git
 ```
 
 ## Usage
@@ -21,27 +21,27 @@ The Crypto Price Tracker is a project designed to monitor the real-time prices o
 1. **Setup the frondend:**
 
 ```bash
-    cd Frontend
+cd Frontend
 ```
 
 ```bash
-    npm install
+npm install
 ```
 
 Runn the following command to start the frontend:
 
 ```bash
-    npm run dev
+npm run dev
 ```
 
 2. **Setup the backend:**
 
 ```bash
-    cd backend
+cd backend
 ```
 
 ```bash
-    npm install
+npm install
 ```
 
 - **Environment Variables**
@@ -58,5 +58,5 @@ CURRENCY=usd
 Run the following command to start the backend:
 
 ```bash
-    nodemon server.js
+nodemon server.js
 ```
