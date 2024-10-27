@@ -25,8 +25,8 @@ const CRYPTO_IDS = process.env.CRYPTO_IDS;
 const CURRENCY = process.env.CURRENCY;
 
 let livePrices = {};
+const userThresholds = {};
 
-// Function to fetch live prices from CoinGecko
 const fetchLivePrices = async () => {
     try {
         const response = await axios.get(COINGECKO_API_URL, {
@@ -36,28 +36,75 @@ const fetchLivePrices = async () => {
             },
         });
         livePrices = response.data;
-        console.log('Fetched live prices:', livePrices);
-
-        // Send price updates to all connected clients
+        console.log("Fetched live prices:", livePrices);
         io.emit('priceUpdate', livePrices);
+        checkThresholds();
     } catch (error) {
         console.error('Error fetching prices from CoinGecko:', error.message);
     }
 };
 
+const checkThresholds = () => {
+    const priceMap = livePrices.reduce((acc, crypto) => {
+        acc[crypto.id] = crypto.current_price;
+        return acc;
+    }, {});
+
+    for (const [socketId, thresholds] of Object.entries(userThresholds)) {
+        for (const [cryptoId, threshold] of Object.entries(thresholds)) {
+            const currentPrice = priceMap[cryptoId];
+            console.log(currentPrice);
+            console.log(threshold);
+
+            if (currentPrice !== undefined) {
+                if (currentPrice > threshold) {
+                    io.to(socketId).emit('riseThresholdAlert', {
+                        crypto: cryptoId,
+                        price: currentPrice,
+                        threshold: threshold,
+                        direction: 'above',
+                    });
+                }
+                else if (currentPrice < threshold) {
+                    io.to(socketId).emit('fallThresholdAlert', {
+                        crypto: cryptoId,
+                        price: currentPrice,
+                        threshold: threshold,
+                        direction: 'below',
+                    });
+                }
+            }
+        }
+    }
+};
+
+
+
+
 cron.schedule('* * * * *', fetchLivePrices);
 
-fetchLivePrices();
-
 io.on('connection', (socket) => {
-    console.log('Connected to client');
+    console.log(`Connected to client: ${socket.id}`);
 
     if (Object.keys(livePrices).length > 0) {
         socket.emit('priceUpdate', livePrices);
     }
 
+    socket.on('setThreshold', ({ crypto, threshold }) => {
+        if (!userThresholds[socket.id]) {
+            userThresholds[socket.id] = {};
+        }
+        userThresholds[socket.id][crypto] = threshold;
+        console.log(`Threshold set for ${crypto} at $${threshold} by client ${socket.id}`);
+        console.log(userThresholds);
+
+
+        socket.emit('thresholdSet', { crypto, threshold });
+    });
+
     socket.on('disconnect', () => {
-        console.log('Disconnected from client');
+        delete userThresholds[socket.id];
+        console.log(`Disconnected from client: ${socket.id}`);
     });
 });
 
