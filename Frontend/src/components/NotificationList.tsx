@@ -14,11 +14,24 @@ const NotificationList: React.FC<NotificationListProps> = ({
       </h2>
       <div className="overflow-y-auto" style={{ maxHeight: "300px" }}>
         <ul className="space-y-4">
-          {notifications.map((notif, index) => (
-            <li key={index} className="text-gray-800">
-              {notif.message}
-            </li>
-          ))}
+        {notifications.map((notif, index) => {
+            // Conditional background color
+            const bgColor =
+              notif.message.includes("above")
+                ? "bg-green-50"
+                : notif.message.includes("below")
+                ? "bg-red-50"
+                : "bg-white";
+
+            return (
+              <li
+                key={index}
+                className={`${bgColor} text-gray-800 p-3 rounded-lg`}
+              >
+                {notif.message}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
