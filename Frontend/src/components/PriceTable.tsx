@@ -28,7 +28,9 @@ const PriceTable: React.FC<PriceTableProps> = ({ prices }) => {
             <TableHead className="w-[100px] font-bold">#</TableHead>
             <TableHead className="font-bold">Coin Name</TableHead>
             <TableHead className="font-bold">Price</TableHead>
-            <TableHead className=" font-bold">24 hr Change</TableHead>
+            <TableHead className=" font-bold  sm:block md:hidden lg:block">
+              24 hr Change
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -50,7 +52,7 @@ const PriceTable: React.FC<PriceTableProps> = ({ prices }) => {
                   : "N/A"}
               </TableCell>
               <TableCell
-                className={`p-3 ${
+                className={`p-3 sm:block md:hidden lg:block ${
                   data.price_change_24h >= 0
                     ? "text-green-600 font-semibold"
                     : "text-red-600 font-semibold"

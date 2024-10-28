@@ -1,15 +1,16 @@
-import { ToastContainer } from 'react-toastify';
-import { useSocket } from './hooks/useSocket';
-import CoinSelector from './components/CoinSelector';
-import NotificationList from './components/NotificationList';
-import PriceTable from './components/PriceTable';
-import ThresholdTable from './components/ThresholdTable';
-import 'react-toastify/dist/ReactToastify.css';
-import 'tailwindcss/tailwind.css';
+import { ToastContainer } from "react-toastify";
+import { useSocket } from "./hooks/useSocket";
+import CoinSelector from "./components/CoinSelector";
+import NotificationList from "./components/NotificationList";
+import PriceTable from "./components/PriceTable";
+import ThresholdTable from "./components/ThresholdTable";
+import "react-toastify/dist/ReactToastify.css";
+import "tailwindcss/tailwind.css";
 
 function App() {
   const {
     notification,
+    setNotification,
     prices,
     selectedCoin,
     thresholdValue,
@@ -21,7 +22,9 @@ function App() {
 
   return (
     <section className="p-8 bg-gray-100 min-h-screen flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-blue-600 mb-6">Crypto Alerts & Live Prices</h1>
+      <h1 className="text-3xl font-bold text-blue-600 mb-6">
+        Crypto Alerts & Live Prices
+      </h1>
       <ToastContainer />
       <CoinSelector
         selectedCoin={selectedCoin}
@@ -33,7 +36,10 @@ function App() {
       />
       <section className="flex flex-col md:flex-row gap-8 w-full">
         <PriceTable prices={prices} />
-        <NotificationList notifications={notification} />
+        <NotificationList
+          notifications={notification}
+          setNotification={setNotification}
+        />
       </section>
       <ThresholdTable thresholds={thresholds} />
     </section>

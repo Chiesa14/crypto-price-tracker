@@ -17,6 +17,8 @@ export const useSocket = () => {
     const message = `${
       crypto.charAt(0).toUpperCase() + crypto.slice(1)
     } is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
+    const timestamp = Date.now();
+
     toast.warning(message, {
       position: "top-right",
       autoClose: 5000,
@@ -26,7 +28,8 @@ export const useSocket = () => {
       draggable: true,
       transition: Bounce,
     });
-    setNotification((prev) => [...prev, { message }]);
+
+    setNotification((prev) => [...prev, { message, timestamp }]);
   };
 
   useEffect(() => {
@@ -81,6 +84,7 @@ export const useSocket = () => {
 
   return {
     notification,
+    setNotification,
     prices,
     selectedCoin,
     thresholdValue,

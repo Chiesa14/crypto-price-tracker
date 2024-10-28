@@ -13,4 +13,5 @@ export interface ThresholdAlertData {
 
 export interface Notification {
   message: string;
+  timestamp: number;
 }
