@@ -6,6 +6,7 @@ import PriceTable from "./components/PriceTable";
 import ThresholdTable from "./components/ThresholdTable";
 import "react-toastify/dist/ReactToastify.css";
 import "tailwindcss/tailwind.css";
+import './App.css'
 import { Toaster } from "./components/ui/toaster";
 
 function App() {

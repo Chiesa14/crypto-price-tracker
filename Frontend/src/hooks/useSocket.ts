@@ -22,7 +22,8 @@ export const useSocket = () => {
     } is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
 
     toast({
-      variant: direction === "below" ? "destructive" : "",
+      variant: direction === "below" ? "error" : "success",
+      title: "Threshold Alert",
       description: message,
     });
 
@@ -59,7 +60,8 @@ export const useSocket = () => {
   const setThresholdsHandler = () => {
     if (!selectedCoin) {
       toast({
-        variant: "destructive",
+        variant: "error",
+        title:"Failed to set threshold",
         description: "Please select a coin first",
       });
       return;
@@ -71,6 +73,7 @@ export const useSocket = () => {
       }));
       setThresholdValue("");
       toast({
+        title:"Created Threshold",
         description: `Threshold set for ${selectedCoin} at $${thresholdValue} successfully`,
       });
 
