@@ -8,8 +8,8 @@ const NotificationList: React.FC<NotificationListProps> = ({
   notifications,
 }) => {
   return (
-    <section>
-      <section className="flex-1  rounded-lg p-6 bg-[#1e1a21]">
+    <section className="flex-1 p-[1px] bg-border-1 rounded-2xl">
+      <section className=" rounded-2xl p-6 bg-[#1e1a21] h-full">
         <h2 className="text-2xl font-semibold text-white mb-4">
           Notifications
         </h2>

@@ -17,7 +17,8 @@ const ThresholdTable: React.FC<ThresholdTableProps> = ({ thresholds }) => {
   return (
     <>
       {Object.entries(thresholds).length > 0 ? (
-        <section className="flex-1 bg-[#1c181f] shadow-lg rounded-lg p-6 overflow-x-auto w-full mt-10">
+        <section className="w-full p-[1px] bg-border-1 rounded-2xl mt-10">
+          <section className="flex-1 bg-[#1c181f] shadow-lg rounded-2xl p-6 overflow-x-auto w-full">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             Price Thresholds
           </h2>
@@ -47,6 +48,7 @@ const ThresholdTable: React.FC<ThresholdTableProps> = ({ thresholds }) => {
               ))}
             </TableBody>
           </Table>
+        </section>
         </section>
       ) : null}
     </>

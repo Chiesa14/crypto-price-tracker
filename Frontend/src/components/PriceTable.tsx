@@ -17,8 +17,8 @@ interface PriceTableProps {
 
 const PriceTable: React.FC<PriceTableProps> = ({ prices }) => {
   return (
-    <section className="p-[1px] bg-border-1 rounded-lg">
-      <section className="flex-1 bg-[#1c181f] shadow-lg rounded-lg p-6 overflow-x-auto">
+    <section className="flex-1 p-[1px] bg-border-1 rounded-2xl">
+      <section className=" bg-[#1c181f] shadow-lg rounded-2xl p-6 overflow-x-auto">
         <h2 className="text-2xl font-semibold text-white mb-4">
           Live Cryptocurrency Prices
         </h2>
