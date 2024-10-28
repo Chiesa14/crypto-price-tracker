@@ -17,7 +17,7 @@ const ThresholdTable: React.FC<ThresholdTableProps> = ({ thresholds }) => {
   return (
     <>
       {Object.entries(thresholds).length > 0 ? (
-        <section className="flex-1 bg-white shadow-lg rounded-lg p-6 overflow-x-auto w-full mt-10">
+        <section className="flex-1 bg-[#1c181f] shadow-lg rounded-lg p-6 overflow-x-auto w-full mt-10">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             Price Thresholds
           </h2>
@@ -25,24 +25,22 @@ const ThresholdTable: React.FC<ThresholdTableProps> = ({ thresholds }) => {
             <TableCaption>Thresholds</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px] font-bold">#</TableHead>
-                <TableHead className="font-bold">Coin Name</TableHead>
-                <TableHead className="font-bold">Threshold Price</TableHead>
+                <TableHead className="w-[100px] font-bold text-white">#</TableHead>
+                <TableHead className="font-bold text-white">Coin Name</TableHead>
+                <TableHead className="font-bold text-white">Threshold Price</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {Object.entries(thresholds).map(([coin, threshold], i) => (
                 <TableRow
                   key={coin}
-                  className={`transition-colors duration-300 ${
-                    i % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  } hover:bg-gray-200`}
+                  className={` bg-[#1e1e1e]`}
                 >
-                  <TableCell className="p-3 text-gray-800">{i + 1}</TableCell>
-                  <TableCell className="p-3 text-gray-800">
+                  <TableCell className="text-white">{i + 1}</TableCell>
+                  <TableCell className="text-white">
                     {coin.charAt(0).toUpperCase() + coin.slice(1)}
                   </TableCell>
-                  <TableCell className="p-3 text-gray-800">
+                  <TableCell className=" text-white">
                     ${threshold.toFixed(2)}
                   </TableCell>
                 </TableRow>

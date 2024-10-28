@@ -8,11 +8,11 @@ const NotificationList: React.FC<NotificationListProps> = ({
   notifications,
 }) => {
   return (
-    <section className="flex-1 bg-white shadow-lg rounded-lg p-6">
-      <h2 className="text-xl font-semibold text-gray-700 mb-4">
+    <section className="flex-1  rounded-lg p-6 bg-[#1e1e1e]">
+      <h2 className="text-2xl font-semibold text-white mb-4">
         Notifications
       </h2>
-      <div className="overflow-y-auto" style={{ maxHeight: "300px" }}>
+      <div className="overflow-y-auto scroll-m-0" style={{ maxHeight: "300px" }}>
         <ul className="space-y-4">
           {notifications.map((notif, index) => {
             const bgColor = notif.message.includes("above")
@@ -24,7 +24,7 @@ const NotificationList: React.FC<NotificationListProps> = ({
             return (
               <li
                 key={index}
-                className={`${bgColor} text-gray-800 p-3 rounded-lg`}
+                className={`${bgColor} text-gray-800 px-3 py-4 rounded-lg`}
               >
                 {notif.message}
               </li>

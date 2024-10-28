@@ -21,8 +21,8 @@ function App() {
   } = useSocket();
 
   return (
-    <section className="p-8 bg-gray-100 min-h-screen flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-blue-600 mb-6">
+    <section className="p-8 bg-[#111111] min-h-screen flex flex-col items-center">
+      <h1 className="text-3xl font-bold text-white mb-6">
         Crypto Alerts & Live Prices
       </h1>
       <ToastContainer />
