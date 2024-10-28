@@ -16,7 +16,7 @@ export const useSocket = () => {
   const notifyThresholdCross = (data: ThresholdAlertData) => {
     const { crypto, price, direction, threshold } = data;
     console.log(direction);
-    
+
     const message = `${
       crypto.charAt(0).toUpperCase() + crypto.slice(1)
     } is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
@@ -42,6 +42,14 @@ export const useSocket = () => {
       setPrices(data);
     });
 
+    socket.on("priceUpdateFailed", () => {
+      toast({
+        variant: "error",
+        title: "Failed to fetch prices",
+        description: "Refresh the app to try again",
+      });
+    });
+
     return () => {
       socket.off("riseThresholdAlert");
       socket.off("fallThresholdAlert");
@@ -61,7 +69,7 @@ export const useSocket = () => {
     if (!selectedCoin) {
       toast({
         variant: "error",
-        title:"Failed to set threshold",
+        title: "Failed to set threshold",
         description: "Please select a coin first",
       });
       return;
@@ -73,7 +81,7 @@ export const useSocket = () => {
       }));
       setThresholdValue("");
       toast({
-        title:"Created Threshold",
+        title: "Created Threshold",
         description: `Threshold set for ${selectedCoin} at $${thresholdValue} successfully`,
       });
 
