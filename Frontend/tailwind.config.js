@@ -12,7 +12,6 @@ module.exports = {
 				'button-2': 'linear-gradient(147.64deg, #05faff -10.93%, #7a84ff 96.81%, #ff00ff 237.17%)',
 				'toast': 'linear-gradient(87.03deg, #1a181b 0%, #211e22 51.04%, #171418 100%)',
 				'border-1': 'linear-gradient(170deg, #ff00ff,gray 30%, gray 80%, #ff00ff 100%)',
-				'border-2': 'linear-gradient(135deg, #ff00ff, black 10%, black 50%, #ff00ff 195%)',
                 
 			},
 			borderRadius: {
