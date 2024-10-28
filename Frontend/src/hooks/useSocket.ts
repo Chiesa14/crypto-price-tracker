@@ -22,7 +22,7 @@ export const useSocket = () => {
     } is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
 
     toast({
-      variant: direction === "Below" ? "destructive" : "",
+      variant: direction === "below" ? "destructive" : "",
       description: message,
     });
 

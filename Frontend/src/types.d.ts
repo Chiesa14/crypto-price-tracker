@@ -8,7 +8,7 @@ export interface ThresholdAlertData {
   crypto: string;
   threshold: number;
   price: number;
-  direction: "Above" | "Below";
+  direction: "above" | "below";
 }
 
 export interface Notification {
