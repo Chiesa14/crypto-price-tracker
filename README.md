@@ -41,7 +41,7 @@ cd Backend
 ```
 
 ```bash
-npm run dev
+npm install
 ```
 
 - **Environment Variables**
@@ -58,5 +58,17 @@ CURRENCY=usd
 Run the following command to start the backend:
 
 ```bash
-nodemon server.js
+npm run dev
+```
+
+or
+
+```bash
+npm start
+```
+
+To build the backend, run the following command:
+
+```bash
+npm run build
 ```

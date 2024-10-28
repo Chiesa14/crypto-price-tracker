@@ -12,6 +12,8 @@ export const socketHandler = (io: Server) => {
     const livePrices = getPrices();
     if (Object.keys(livePrices).length > 0) {
       socket.emit("priceUpdate", livePrices);
+    } else {
+      socket.emit("priceUpdateFailed");
     }
 
     socket.on("setThreshold", ({ crypto, threshold }) => {
