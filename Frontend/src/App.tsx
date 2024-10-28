@@ -6,11 +6,11 @@ import PriceTable from "./components/PriceTable";
 import ThresholdTable from "./components/ThresholdTable";
 import "react-toastify/dist/ReactToastify.css";
 import "tailwindcss/tailwind.css";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const {
     notification,
-    setNotification,
     prices,
     selectedCoin,
     thresholdValue,
@@ -26,6 +26,7 @@ function App() {
         Crypto Alerts & Live Prices
       </h1>
       <ToastContainer />
+      <Toaster />
       <CoinSelector
         selectedCoin={selectedCoin}
         thresholdValue={thresholdValue}
@@ -38,7 +39,6 @@ function App() {
         <PriceTable prices={prices} />
         <NotificationList
           notifications={notification}
-          setNotification={setNotification}
         />
       </section>
       <ThresholdTable thresholds={thresholds} />

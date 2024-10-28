@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-import { Bounce, toast } from "react-toastify";
 import { Notification, ThresholdAlertData } from "../types";
+import { useToast } from "./use-toast";
 
 const socket = io("http://localhost:5000");
 
 export const useSocket = () => {
+  const { toast } = useToast();
   const [notification, setNotification] = useState<Notification[]>([]);
   const [prices, setPrices] = useState({});
   const [selectedCoin, setSelectedCoin] = useState("");
@@ -14,22 +15,18 @@ export const useSocket = () => {
 
   const notifyThresholdCross = (data: ThresholdAlertData) => {
     const { crypto, price, direction, threshold } = data;
+    console.log(direction);
+    
     const message = `${
       crypto.charAt(0).toUpperCase() + crypto.slice(1)
     } is now ${direction} the threshold of $${threshold}. Current price: $${price}`;
-    const timestamp = Date.now();
 
-    toast.warning(message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      transition: Bounce,
+    toast({
+      variant: direction === "Below" ? "destructive" : "",
+      description: message,
     });
 
-    setNotification((prev) => [...prev, { message, timestamp }]);
+    setNotification((prev) => [...prev, { message }]);
   };
 
   useEffect(() => {
@@ -61,7 +58,10 @@ export const useSocket = () => {
 
   const setThresholdsHandler = () => {
     if (!selectedCoin) {
-      toast.error("Please select a coin", { transition: Bounce });
+      toast({
+        variant: "destructive",
+        description: "Please select a coin first",
+      });
       return;
     }
     if (thresholdValue) {
@@ -70,10 +70,9 @@ export const useSocket = () => {
         [selectedCoin]: parseFloat(thresholdValue),
       }));
       setThresholdValue("");
-      toast.success(
-        `Threshold set for ${selectedCoin} at $${thresholdValue} successfully`,
-        { transition: Bounce }
-      );
+      toast({
+        description: `Threshold set for ${selectedCoin} at $${thresholdValue} successfully`,
+      });
 
       socket.emit("setThreshold", {
         crypto: selectedCoin,

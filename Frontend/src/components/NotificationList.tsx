@@ -1,31 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 interface NotificationListProps {
-  notifications: { message: string; timestamp: number }[];
-  setNotification: React.Dispatch<
-    React.SetStateAction<{ message: string; timestamp: number }[]>
-  >;
+  notifications: { message: string }[];
 }
 
 const NotificationList: React.FC<NotificationListProps> = ({
   notifications,
-  setNotification,
 }) => {
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentTime = Date.now();
-      console.log(currentTime);
-      
-      setNotification((prevNotifications) =>
-        prevNotifications.filter(
-          (notif) => currentTime - notif.timestamp < 50000
-        )
-      );
-    }, 25000);
-
-    return () => clearInterval(interval);
-  }, [setNotification]);
-
   return (
     <section className="flex-1 bg-white shadow-lg rounded-lg p-6">
       <h2 className="text-xl font-semibold text-gray-700 mb-4">
@@ -45,8 +26,7 @@ const NotificationList: React.FC<NotificationListProps> = ({
                 key={index}
                 className={`${bgColor} text-gray-800 p-3 rounded-lg`}
               >
-                {notif.message} "   "
-                {notif.timestamp}
+                {notif.message}
               </li>
             );
           })}
