@@ -37,9 +37,7 @@ function App() {
       />
       <section className="flex flex-col md:flex-row gap-8 w-full">
         <PriceTable prices={prices} />
-        <NotificationList
-          notifications={notification}
-        />
+        <NotificationList notifications={notification} />
       </section>
       <ThresholdTable thresholds={thresholds} />
     </section>
